@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoForm from "../../components/TodoForm";
 import TodoList from "../../components/TodoList";
 
 ListPage.propTypes = {};
@@ -50,10 +51,16 @@ function ListPage(props) {
   const handleShowNewClick = () => {
     setFilteredStatus("new");
   };
+  const handleToDoFormSubmit = (value) => {
+    console.log("submit", value);
+  };
 
   const renderTodoList = todoList.filter((todo) => filteredStatus === "all" || filteredStatus === todo.status);
   return (
     <div>
+      <h3>What Todo Form</h3>
+      <TodoForm onSubmit={handleToDoFormSubmit}></TodoForm>
+
       <h3>Todo list</h3>
       <h4>{filteredStatus}</h4>
       <TodoList todoList={renderTodoList} onTodoClick={handleTodoClick}></TodoList>
